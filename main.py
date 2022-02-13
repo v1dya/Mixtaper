@@ -18,34 +18,34 @@ def download(link):
         ydl.download([link])
 
 def main():
-    n = int(input("Enter number of songs you would like to add:"))
-    for i in range(n):
-        link = input(f"Enter link of song {i+1}:")
+    global bitrate, tag, mixtape
+    count = 0
+    choice = input("Would you like to add a song to your mixtape? (y/n):")
+    while choice == "y":
+        link = input("Enter youtube link:")
         download(link)
+        song_path = glob.glob("*.mp3")
+        if "mixtape.mp3" in song_path:
+            song_path.remove("mixtape.mp3")
 
-    song_paths = glob.glob("*.mp3")
-    if "mixtape.mp3" in song_paths:
-        song_paths.remove("mixtape.mp3")
-    songs = [AudioSegment.from_mp3(mp3_file) for mp3_file in song_paths]
-
-    bitrate = mediainfo(song_paths[0])["bit_rate"]
-    first_song = songs.pop(0)
-
-    mixtape = first_song
-
-    if len(songs) > 0:
-        for song in songs:
+        song = AudioSegment.from_mp3(song_path[0])
+        if count == 0:
+            mixtape = song
+            count = count + 1
+        else:
             mixtape = mixtape.append(song, crossfade=(10 * 1000))
+            count = count + 1
+        tag = mediainfo(song_path[0]).get('TAG', {})
+        bitrate = mediainfo(song_path[0])["bit_rate"]
+        os.remove(song_path[0])
+        choice = input("Would you like to add another song? (y/n):")
 
     mixtape = mixtape.fade_out(2000)
 
     f = open("mixtape.mp3", 'wb')
-    mixtape.export(f, format="mp3", tags=mediainfo(song_paths[0]).get('TAG', {}), bitrate=bitrate)
+    mixtape.export(f, format="mp3", tags=tag, bitrate=bitrate)
+    print("Song exported as mixtape.mp3")
     f.close()
-
-    for i in song_paths:
-        os.remove(i)
-
 
 
 
