@@ -22,8 +22,8 @@ def download(link):
 
 
 def mix(links):
+    global bitrate, tag, mixtape, status
     status = "converting"
-    global bitrate, tag, mixtape
     count = 0
     for link in links:
         download(link)
