@@ -18,4 +18,9 @@ def test():
 @app.post("/youtube")
 def get_mixtape(songs: Links):
     mix(songs.links)
+    return {"Files": "Uploaded"}
+
+
+@app.get("/youtube")
+def mixtape():
     return FileResponse("mixtape.mp3", media_type="audio/mp4")
