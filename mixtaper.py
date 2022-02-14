@@ -4,6 +4,8 @@ from pydub import AudioSegment
 from pydub.utils import mediainfo
 import os
 
+status = ""
+
 ydl_opts = {
     'format': 'bestaudio/best',
     'postprocessors': [{
@@ -20,6 +22,7 @@ def download(link):
 
 
 def mix(links):
+    status = "converting"
     global bitrate, tag, mixtape
     count = 0
     for link in links:
@@ -45,4 +48,5 @@ def mix(links):
     f = open("mixtape.mp3", 'wb')
     mixtape.export(f, format="mp3", tags=tag, bitrate=bitrate)
     print("Song exported as mixtape.mp3")
+    status = "done"
     f.close()

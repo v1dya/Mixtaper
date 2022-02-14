@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Path
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from mixtaper import mix
+from mixtaper import mix, status
 
 app = FastAPI()
 
@@ -24,3 +24,8 @@ def get_mixtape(songs: Links):
 @app.get("/youtube")
 def mixtape():
     return FileResponse("mixtape.mp3", media_type="audio/mp4")
+
+
+@app.get("/status")
+def getStatus():
+    return { "status" : status }
