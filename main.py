@@ -1,7 +1,9 @@
-from fastapi import FastAPI, Path
+import os
+
+from fastapi import FastAPI, Path, BackgroundTasks
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from mixtaper import mix, status
+from mixtaper import mix
 
 app = FastAPI()
 
@@ -12,20 +14,22 @@ class Links(BaseModel):
 
 @app.get("/")
 def test():
-    return {"Hello": "World"}
+    return {"Hello": "API works"}
 
 
 @app.post("/youtube")
-def get_mixtape(songs: Links):
-    mix(songs.links)
-    return {"Files": "Uploaded"}
+async def get_mixtape(songs: Links,background_tasks: BackgroundTasks):
+    try:
+        os.remove("mixtape.mp3")
+    except:
+        print("Mixtape not found")
+    background_tasks.add_task(mix, songs.links)
+    return {"Files": "Added to background"}
 
 
 @app.get("/youtube")
 def mixtape():
-    return FileResponse("mixtape.mp3", media_type="audio/mp4")
-
-
-@app.get("/status")
-def getStatus():
-    return { "status" : status }
+    if os.path.isfile("mixtape.mp3"):
+        return FileResponse("mixtape.mp3", media_type="audio/mp4")
+    else:
+        return {"File": "Not Found"}

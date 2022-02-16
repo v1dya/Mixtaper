@@ -4,8 +4,6 @@ from pydub import AudioSegment
 from pydub.utils import mediainfo
 import os
 
-status = ""
-
 ydl_opts = {
     'format': 'bestaudio/best',
     'postprocessors': [{
