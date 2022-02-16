@@ -1,0 +1,71 @@
+.inputter__container{
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.inputter__mainBox{
+    height: 35px;
+    display: flex;
+    align-items: center;
+    width: 95%;
+    vertical-align: middle;
+    justify-content: space-between;
+}
+
+.inputter__text{
+    height: 100%;
+    display: flex;
+    flex: 1;
+    line-height: 100%;
+    text-align: center;
+    background-color: #1D1D24;
+    border: 1px solid #50B1D4;
+    border-radius: 20px;
+    color: #50B1D4;
+}
+
+.inputter__inputLink{
+    height: 100%;
+    font-size: 22px;
+    width: 200px;
+    color: #50B1D4;
+    text-align: center;
+    
+}
+
+.inputter__addButton{
+    height: 100%;
+    width: 200px;
+    font-size: 22px;
+    border: none;
+    background-color: #1D1D24;
+    color: #50B1D4;
+    cursor: pointer;
+}
+
+.converter__container{
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.converter__button{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: #0beef9;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    border: 2px solid #50B1D4;
+    cursor: pointer;
+    border-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    border-color: linear-gradient(315deg, #0beef9 0%, #48a9fe 74%);
+}

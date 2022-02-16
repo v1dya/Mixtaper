@@ -1,0 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background-color: #1D1D24;
+  min-height: 100vh;
+}
