@@ -29,7 +29,7 @@ function Inputter() {
     axios
       .get("https://mixtaperr.herokuapp.com/")
       .then(function (response) {
-        setText(response.hello)
+        setText(response.data.Hello)
         console.log(response);
       })
       .catch(function (error) {
@@ -39,6 +39,14 @@ function Inputter() {
       .then(function () {
         console.log("success")
       });
+
+      /*
+      axios.post('https://mixtaperr.herokuapp.com/youtube', jsonReq)
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });*/
   };
   return (
     <div className="inputter">
