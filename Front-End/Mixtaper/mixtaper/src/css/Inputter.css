@@ -1,71 +1,103 @@
-.inputter__container{
-    margin-top: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.inputter__mainBox{
-    height: 35px;
-    display: flex;
-    align-items: center;
-    width: 95%;
-    vertical-align: middle;
-    justify-content: center;
-}
-
-.inputter__text{
-    height: 100%;
-    display: flex;
-    flex: 1;
-    line-height: 100%;
+.inputter__inputText{
+ /*   background-color: aliceblue;*/
     text-align: center;
-    background-color: #1D1D24;
-    border: 1px solid #50B1D4;
-    border-radius: 20px;
-    color: #50B1D4;
+    color: aqua;
+    justify-content: center;
+    margin-top: 4rem;
 }
 
-.inputter__inputLink{
-    height: 100%;
-    font-size: 22px;
-    width: 200px;
-    color: #50B1D4;
-    text-align: center;
+.inputter__inputText h3{
+    font-size: 1.5rem;
+}
+
+.inputter__inputBox{
+    height: 2rem;
+    margin-top: 2rem;
+    line-height: 20px;
+/*    background-color: brown;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media (max-width: 700px) {
+    .inputter__inputBox{
+        flex-direction: column;
+        align-items: center; 
+        flex-wrap: nowrap;
+    }
+    .inputBox__editText{
+        width: 80%;
+        margin-bottom: 10px;
+        padding: 7px 10px !important;
+    }
     
 }
 
-.inputter__addButton{
-    height: 100%;
-    width: 200px;
-    font-size: 22px;
-    border: none;
-    background-color: #1D1D24;
-    color: #50B1D4;
-    cursor: pointer;
-}
-
-.converter__container{
-    margin-top: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.converter__button{
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    color: #0beef9;
-    width: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    align-items: center;
-    border: 2px solid #50B1D4;
-    cursor: pointer;
+.inputBox__editText{
+    flex:0.7;
     border-radius: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-weight: 600;
-    border-color: linear-gradient(315deg, #0beef9 0%, #48a9fe 74%);
+    padding: 5px 8px;
+    border-color: aqua;
+    color: aqua;
+    background-color: #1D1D24;
+    border:1px solid rgba(0,255,255);
+}
+
+.inputBox__addButton{
+    flex:0.1;
+    border-radius: 20px;
+    background-color: aqua;
+    color: #1D1D24;
+    padding: 5px 7px;
+    font-size: 1.2rem;
+    border:1px solid rgba(0,255,255);
+}
+
+.inputBox__addButton:hover{
+    background-color: #1D1D24;
+    color:aqua;
+}
+
+.inputBox__addButton:active{
+    background-color: aliceblue;
+    color:#1D1D24;
+}
+
+.inputter__mixtape{
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(4,167,202);
+}
+
+.mixtape__button{
+    border-radius: 20px;
+    background-color: aqua;
+    color: #1D1D24;
+    padding: 3px 15px;
+    font-size: 1.7rem;
+    border:1px solid rgba(0,255,255);
+}
+
+.mixtape__button:hover{
+    background-color: #1D1D24;
+    color:aqua;
+}
+
+.mixtape__button:active{
+    background-color: aliceblue;
+    color:#1D1D24;
+}
+
+.inputter__linkHistory{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.inputter__linkHistory p{
+    margin-top: 10px;
+    margin-left: 1rem;
+    color:aliceblue;
 }
