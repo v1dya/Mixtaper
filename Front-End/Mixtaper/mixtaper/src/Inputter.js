@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./css/Inputter.css";
 
@@ -5,6 +6,8 @@ function Inputter() {
   const [links, setLinks] = useState("");
   const [currLink, setcurrLink] = useState("");
   const [linksJson, setlinksJson] = useState([]);
+  const [text, setText] = useState("");
+  const axios = require("axios").default;
 
   const addLink = (e) => {
     e.preventDefault();
@@ -12,25 +15,38 @@ function Inputter() {
   };
 
   useEffect(() => {
-    if(currLink!=""){
+    if (currLink != "") {
       setlinksJson([...linksJson, currLink]);
     }
   }, [links]);
 
-  const mixtape = (e) =>{
+  const mixtape = (e) => {
     e.preventDefault();
     let jsonReq = {
-      "links":linksJson
-    }
-    
-  }
+      links: linksJson,
+    };
+    const axios = require("axios").default;
+    axios
+      .get("https://mixtaperr.herokuapp.com/")
+      .then(function (response) {
+        setText(response.hello)
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log("fail")
+        console.log(error);
+      })
+      .then(function () {
+        console.log("success")
+      });
+  };
   return (
     <div className="inputter">
       <div className="inputter__inputText">
         <h3>enter your youtube links:</h3>
       </div>
-      
-        <form className="inputter__inputBox">
+
+      <form className="inputter__inputBox">
         <input
           className="inputBox__editText"
           value={currLink}
@@ -40,11 +56,11 @@ function Inputter() {
         <button className="inputBox__addButton" onClick={addLink} type="submit">
           <strong>add to mixtape</strong>
         </button>
-        </form>
-      
+      </form>
+
       <div className="inputter__mixtape">
         <button className="mixtape__button" onClick={mixtape}>
-          <b>mixtape</b>
+          <b>{text ? text : "Mixtape"}</b>
         </button>
       </div>
       <div className="inputter__linkHistory">

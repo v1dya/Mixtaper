@@ -4,9 +4,19 @@ from fastapi import FastAPI, Path, BackgroundTasks
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from mixtaper import mix
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins
+)
 
 class Links(BaseModel):
     links: list[str]
