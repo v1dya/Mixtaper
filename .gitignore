@@ -1,1 +1,5 @@
 .DS_Store
+
+#IDE config
+.idea/codeStyles/
+.idea/runConfigurations.xml

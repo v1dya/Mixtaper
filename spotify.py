@@ -1,42 +1,53 @@
 import spotipy
-import spotdl
+import os
+import spotify_dl
 from spotipy.oauth2 import SpotifyClientCredentials
 
 
-def mixtapePlaylist(sp, user):
-    externalUrls = user['external_urls']
-    uri = user['uri']
-    playlist = sp.playlist(playlist_id=uri)
-    print(playlist)
+class Song:
+    def __init__(self, name, genre, length):
+        self.name = name
+        self.genre = genre
+        self.length = length
 
 
-def createMixtape(user):
-    print('create')
+def songSelect():
+    print('song select')
 
+
+def mixtapeAlbum(sp):
+    # Get list of albums
+    albumList = sp.search(q='album:' + input("Enter your album: "), type='album')
+
+    # Album does not exist
+    if not albumList['albums']['items']:
+        print("Invalid")
+        mixtapeAlbum(sp)
+        return
+
+    # Select the top most album in list
+    album = albumList['albums']['items'][0]
+    print(album['artists'])
+
+    albumUri = album['id']
+    url = 'https://open.spotify.com/album/' + albumUri
 
 def spotifyPlaylist(user):
     print('playlist')
 
 
-# d5o7fm1kukg92xsr6fur6smhr
-def spotify():
-    auth_manager = SpotifyClientCredentials()
-    sp = spotipy.Spotify(auth_manager=auth_manager)
-    username = input('Enter your spotify userID (you can find it in your account page):\n')
-    user = sp.user(username)
-    print(sp.current_user_followed_artists(limit=1))
-    choice = input("1.Mixtape your playlist\n"
-                   "2.Mixtape your custom songs\n"
-                   "3.Create a new spotify playlist\n"
-                   "Enter your choice: ")
+def handleSpotify():
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
-    choice = int(choice)
+    choice = int(input("1.Select songs\n"
+                       "2.Mixtape albums\n"
+                       "Enter your choice: "))
 
     if choice == 1:
-        mixtapePlaylist(user)
+        songSelect()
     elif choice == 2:
-        createMixtape(user)
-    elif choice == 3:
-        spotifyPlaylist(user)
+        mixtapeAlbum(sp)
     else:
         print('invalid input')
+        handleSpotify()
+        return
