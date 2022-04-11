@@ -3,12 +3,11 @@ import os
 import spotify_dl
 from spotipy.oauth2 import SpotifyClientCredentials
 
-
 class Song:
-    def __init__(self, name, genre, length):
+    def __init__(self, name, genre, artist):
         self.name = name
         self.genre = genre
-        self.length = length
+        self.artist = artist
 
 
 def songSelect():
@@ -27,9 +26,9 @@ def mixtapeAlbum(sp):
 
     # Select the top most album in list
     album = albumList['albums']['items'][0]
-    print(album['artists'])
 
     albumUri = album['id']
+    print(albumUri)
     url = 'https://open.spotify.com/album/' + albumUri
 
 def spotifyPlaylist(user):

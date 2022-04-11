@@ -3,14 +3,14 @@ from spotify import *
 
 
 def main():
-    # choice = input("1.Youtube\n"
-    #                "2.Spotify\n"
-    #                "Enter your choice: ")
-    # # choice = int(choice)
-    # # if choice == 1:
-    # #     youtube()
-    # # elif choice == 2:
-    # #     handleSpotify()
+    choice = input("1.Youtube\n"
+                   "2.Spotify\n"
+                   "Enter your choice: ")
+    # choice = int(choice)
+    # if choice == 1:
+    #     handleYoutute()
+    # elif choice == 2:
+    #     handleSpotify()
     handleSpotify()
 
 
